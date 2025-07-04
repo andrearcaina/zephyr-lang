@@ -37,4 +37,20 @@ const (
 	FUNCTION = "FUNC"
 	LET      = "LET"
 	CONST    = "CONST"
+	RETURN   = "RETURN"
 )
+
+var keywords = map[string]TokenCategory{
+	"func":   FUNCTION,
+	"let":    LET,
+	"const":  CONST,
+	"return": RETURN,
+}
+
+// LookupIdent checks if the given identifier is a keyword and returns the corresponding token type
+func LookupIdentifier(identifier string) TokenCategory {
+	if tok, ok := keywords[identifier]; ok {
+		return tok
+	}
+	return IDENT
+}
